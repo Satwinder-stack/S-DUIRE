@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchButton = document.querySelector(".search-bar button");
 
     const pages = {
-        "home": "index.html",  
+        "home": "index.php",  
         "about us": "About Us.php", 
         "background": "About Us.php",
         "story": "About Us.php",

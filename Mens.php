@@ -9,7 +9,7 @@
 // Session start here
 session_start();
 
-$conn = new mysqli("localhost", "root", "", "ShoppingDB1");
+require 'db_connection.php';
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -40,12 +40,12 @@ if (isset($_POST['logout'])) {
     
 <!-- This is for the header which contains the contents, nav, and the search engine -->
     <header class="head">
-        <a href="index.html"><h1>S É D U I R E</h1></a>
+        <a href="index.php"><h1>S É D U I R E</h1></a>
         <div class="hamburger" onclick="toggleMenu()">
             <i class="ri-menu-line"></i>
         </div>
         <nav id="mobile-menu" class="hidden">
-            <a href="index.html" id="nav1">HOME</a>
+            <a href="index.php" id="nav1">HOME</a>
             <a href="About Us.php" id="nav2">ABOUT</a>
             <a href="Contact.php" id="nav3">CONTACT</a>
             <a href="cart.php" id="nav4">CART</a>

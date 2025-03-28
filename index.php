@@ -1,12 +1,21 @@
-<!-- // 
-Members: 
+<?php
+// Members: 
 // De Jesus, Franz Mark
 // Gonzales, John Patrick
 // Guaio, Karl
 // Jeerh, Satwinder 
 // Section: WD-202
 
-// Session start here -->
+// Session start here
+session_start();
+$conn = new mysqli("localhost", "root", "", "ShoppingDB1");
+
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header("Location: login.php"); 
+    exit();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,12 +36,12 @@ Members:
 <body>
 <!-- For our header where all the navs and search engine are located -->
     <header class="head">
-        <a href="index.html"><h1>S É D U I R E</h1></a>
+        <a href="index.php"><h1>S É D U I R E</h1></a>
         <div class="hamburger" onclick="toggleMenu()">
             <i class="ri-menu-line"></i>
         </div>
         <nav id="mobile-menu" class="hidden">
-            <a href="index.html" id="nav1">HOME</a>
+            <a href="index.php" id="nav1">HOME</a>
             <a href="About Us.php" id="nav2">ABOUT</a>
             <a href="Contact.php" id="nav3">CONTACT</a>
             <a href="cart.php" id="nav4">CART</a>

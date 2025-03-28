@@ -196,7 +196,7 @@ if (isset($_POST['logout'])) {
 <!-- This is for the functions -->
 <div class="btn-container">
     <button type="submit" name="update_cart" class="btn">Update Cart</button>
-    <a href="index.html" class="btn">Continue Shopping</a>
+    <a href="index.php" class="btn">Continue Shopping</a>
     <?php if (!empty($_SESSION['cart'])) : ?>
         <button type="submit" name="proceed_checkout" class="btn">Proceed to Checkout</button>
     <?php endif; ?>

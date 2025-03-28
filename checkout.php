@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $cvv = htmlspecialchars($_POST['cvv']);
     }
 
-    $conn = new mysqli("localhost", "root", "", "shoppingdb1");
+    require 'db_connection.php';
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <select name="country" id="country" required>
         <option value="">Select Country</option>
         <?php
-            $conn = new mysqli("localhost", "root", "", "shoppingdb1");
+            require 'db_connection.php';
             $sql = "SELECT id, name FROM countries";
             $result = $conn->query($sql);
             while ($row = $result->fetch_assoc()) {
@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <select name="city" id="city" required>
         <option value="">Select City</option>
             <?php
-            $conn = new mysqli("localhost", "root", "", "shoppingdb1");
+            require 'db_connection.php';
             $sql = "SELECT id, name FROM cities";
             $result = $conn->query($sql);
             while ($row = $result->fetch_assoc()) {
