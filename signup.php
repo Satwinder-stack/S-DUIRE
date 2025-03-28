@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
         $_SESSION['customer_id'] = $stmt->insert_id;
         $_SESSION['username'] = $username;
-        echo "<script>alert('Account created successfully! Redirecting to login.'); window.location.href='login.php';</script>";
+        header("Location: login.php"); 
     } else {
         echo "<script>alert('Error creating account. Please try again.');</script>";
     }

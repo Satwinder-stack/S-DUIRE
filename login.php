@@ -7,6 +7,8 @@
 // Section: WD-202
 
 // Session start here
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start(); 
 require 'db_connection.php';
 
@@ -43,9 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Account does not exist!'); window.location.href='login.php';</script>";
     }
 }
-
-
-
 
 $conn->close();
 ?>
