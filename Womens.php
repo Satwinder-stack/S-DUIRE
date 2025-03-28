@@ -12,10 +12,6 @@ session_start();
 
 require 'db_connection.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 // This is to read from the products2(women) table and read it from that
 $debug_result = $conn->query("SELECT * FROM Products2 WHERE product_name = 'MFK Baccarat Rouge 540'");
 if ($debug_result->num_rows === 0) {

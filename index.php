@@ -8,7 +8,7 @@
 
 // Session start here
 session_start();
-$conn = new mysqli("localhost", "root", "", "ShoppingDB1");
+require 'db_connection.php';
 
 if (isset($_POST['logout'])) {
     session_destroy();

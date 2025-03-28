@@ -10,10 +10,6 @@
 session_start();
 require 'db_connection.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 // This is to ensure the username and password are written properly with a predefined format
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);

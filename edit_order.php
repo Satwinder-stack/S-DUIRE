@@ -6,13 +6,8 @@
 // Jeerh, Satwinder 
 // Section: WD-202
 
-// Start the database
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "shoppingdb1";
+require 'db_connection.php';
 
-$conn = new mysqli($host, $user, $pass, $dbname);
 
 $orderID = intval($_GET['id']);
 

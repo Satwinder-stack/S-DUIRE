@@ -11,10 +11,6 @@ session_start();
 
 require 'db_connection.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 // This is to set up the connection from the products table
 $result = $conn->query("SELECT * FROM Products");
 

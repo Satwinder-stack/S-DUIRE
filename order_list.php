@@ -9,6 +9,7 @@
 
 // Session start here
 session_start();
+require 'db_connection.php';
 
 
 // This is to ensure the user is logged in
@@ -18,17 +19,6 @@ if (!isset($_SESSION['customer_id'])) {
 
 $customer_id = $_SESSION['customer_id']; 
 
-// Setting up the connection here
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "shoppingdb1";
-
-$conn = new mysqli($host, $user, $pass, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // This is to get the estimated time form the distance recorded
 function getDeliveryTime($distance) {

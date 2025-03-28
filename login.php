@@ -8,20 +8,7 @@
 
 // Session start here
 session_start(); 
-
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "ShoppingDB1";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+require 'db_connection.php';
 
 // To set up and as for the username and password of the user that is stored in the database
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

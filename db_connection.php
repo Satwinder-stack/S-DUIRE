@@ -8,9 +8,9 @@
 
 // This is for the database connection, like a startup
 $servername = "localhost";
-$username = "root";
-$password = "";
-$database = "ShoppingDB1"; 
+$username = "seduire";
+$password = "s3du!r3!22";
+$database = "shoppingdb1"; 
 
 $conn = new mysqli($servername, $username, $password, $database);
 
