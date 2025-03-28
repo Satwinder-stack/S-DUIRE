@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST['password']);
 
     
-    $sql = "SELECT customer_id, username, password FROM Customers WHERE username=?";
+    $sql = "SELECT customer_id, username, password FROM customers WHERE username=?";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {

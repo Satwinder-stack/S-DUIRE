@@ -23,7 +23,7 @@ $customer_id = $_SESSION['customer_id'];
 // To read from the database
 $query = "SELECT c.cart_id, c.product_id, p.product_name, c.quantity, p.price
           FROM cart c
-          JOIN products p ON c.product_id = p.product_ID
+          JOIN products p ON c.product_id = p.product_id
           WHERE c.customer_id = ?";
 
 $stmt = $conn->prepare($query);
@@ -54,9 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['proceed_checkout'])) {
     $_SESSION['checkout_items'] = [];
 
     if (isset($_POST['selected_items'])) {
-        foreach ($_POST['selected_items'] as $selectedID) {
-            if (isset($_SESSION['cart'][$selectedID])) {
-                $_SESSION['checkout_items'][$selectedID] = $_SESSION['cart'][$selectedID];
+        foreach ($_POST['selected_items'] as $selectedid) {
+            if (isset($_SESSION['cart'][$selectedid])) {
+                $_SESSION['checkout_items'][$selectedid] = $_SESSION['cart'][$selectedid];
             }
         }
     }

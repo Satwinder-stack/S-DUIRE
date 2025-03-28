@@ -9,7 +9,7 @@
 require 'db_connection.php';
 
 
-$orderID = intval($_GET['id']);
+$orderid = intval($_GET['id']);
 
 // This is to update the orders
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -82,7 +82,7 @@ if (isset($_POST['logout'])) {
                     <h3><?= htmlspecialchars($row['product_name']); ?></h3>
                     <p class="product-price">$<?= number_format($row['price'], 2); ?></p>
                     <p>100ml</p>
-                    <a href="product_details.php?id=<?= $row['product_ID']; ?>" class="view-btn">View Details</a>
+                    <a href="product_details.php?id=<?= $row['product_id']; ?>" class="view-btn">View Details</a>
                 </div>
             <?php endwhile; ?>
         </div>

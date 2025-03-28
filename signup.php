@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // This is to read from the customers table to be referenced later on
-    $sql = "SELECT * FROM Customers WHERE username = ?";
+    $sql = "SELECT * FROM customers WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // This is to set the password correct with a hash
-    $sql = "INSERT INTO Customers (username, password) VALUES (?, ?)";
+    $sql = "INSERT INTO customers (username, password) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $hashed_password);
 
