@@ -9,6 +9,8 @@
 // Session start here
 session_start();
 require 'db_connection.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // This is to ensure the username and password are written properly with a predefined format
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -44,18 +46,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // This is to set the password correct with a hash
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO Customers (username, password) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $hashed_password);
 
-    // This is whether the password was correctly made or not
     if ($stmt->execute()) {
         $_SESSION['customer_id'] = $stmt->insert_id;
         $_SESSION['username'] = $username;
-        header("Location: login.php"); 
+        header("Location: login.php");
+        exit;
     } else {
-        echo "<script>alert('Error creating account. Please try again.');</script>";
+        die("Error inserting data: " . $stmt->error);
     }
 
     $stmt->close();
