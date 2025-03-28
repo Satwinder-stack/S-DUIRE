@@ -43,9 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     require 'db_connection.php';
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // THis is to insert in the orders table
     $conn->begin_transaction();

@@ -10,11 +10,6 @@
 session_start();
 require 'db_connection.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-
 // To check the quantity here
 if (!isset($_POST['product_id']) || !isset($_POST['quantity'])) {
     header("Location: index.php?error=missing_data");
