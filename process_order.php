@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order_id"])) {
     $order_id = intval($_POST["order_id"]);
 
     // This is to process the order
-    $query = "SELECT order_id, customer_name, email, address, product_name, quantity, price, (price * quantity) AS total_price, order_date, customer_ID FROM orders WHERE order_id = ?";
+    $query = "SELECT order_id, customer_name, email, address, product_name, quantity, price, (price * quantity) AS total_price, order_date, customer_id FROM orders WHERE order_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $order_id);
     $stmt->execute();
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order_id"])) {
             "issssiddsi",
             $row['order_id'], $row['customer_name'], $row['email'], $row['address'],
             $row['product_name'], $row['quantity'], $row['price'],
-            $total_price, $row['order_date'], $row['customer_ID']
+            $total_price, $row['order_date'], $row['customer_id']
         );
 
         
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["order_id"])) {
             "issssiddsi",
             $row['order_id'], $row['customer_name'], $row['email'], $row['address'],
             $row['product_name'], $row['quantity'], $row['price'],
-            $total_price, $row['order_date'], $row['customer_ID']
+            $total_price, $row['order_date'], $row['customer_id']
         );
 
         

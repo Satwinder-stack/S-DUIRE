@@ -10,8 +10,8 @@ require 'db_connection.php';
 
 // This is to read from the orders table
 $orderID = intval($_GET['id']);
-$stmt = $conn->prepare("SELECT * FROM orders WHERE order_ID = ?");
-$stmt->bind_param("i", $orderID);
+$stmt = $conn->prepare("SELECT * FROM orders WHERE order_id = ?");
+$stmt->bind_param("i", $orderid);
 $stmt->execute();
 $order = $stmt->get_result()->fetch_assoc();
 ?>

@@ -14,18 +14,18 @@ require 'db_connection.php';
 
 
 // This is to read from the products2(women) table and read it from that
-$debug_result = $conn->query("SELECT * FROM Products2 WHERE product_name = 'MFK Baccarat Rouge 540'");
+$debug_result = $conn->query("SELECT * FROM products2 WHERE product_name = 'MFK Baccarat Rouge 540'");
 if ($debug_result->num_rows === 0) {
     error_log("Error: MFK Baccarat Rouge 540 not found in Products2 table.");
 }
 
 // This is to read from the products2(women) table and read it from that
-$result = $conn->query("SELECT * FROM Products2");
+$result = $conn->query("SELECT * FROM products2");
 
 
 if (isset($_GET['id'])) {
-    $product_ID = intval($_GET['id']);
-    error_log("Debug: Product ID received from URL = " . $product_ID);
+    $product_id = intval($_GET['id']);
+    error_log("Debug: Product ID received from URL = " . $product_id);
 }
 
 // To ensure logout is properly done

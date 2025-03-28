@@ -20,16 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conn->prepare("
         UPDATE orders 
         SET product_name = ?, quantity = ?, price = ? 
-        WHERE order_ID = ?
+        WHERE order_id = ?
     ");
-    $stmt->bind_param("sidi", $product, $quantity, $price, $orderID);
+    $stmt->bind_param("sidi", $product, $quantity, $price, $orderid);
     $stmt->execute();
 
     header("Location: orders.php");
     exit();
 }
 
-$result = $conn->query("SELECT * FROM orders WHERE order_ID = $orderID");
+$result = $conn->query("SELECT * FROM orders WHERE order_id = $orderid");
 $order = $result->fetch_assoc();
 ?>
 

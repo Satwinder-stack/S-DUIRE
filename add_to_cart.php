@@ -29,7 +29,7 @@ $category = null;
 $table = null;
 
 // To check here if the products are from men or women
-$query = $conn->prepare("SELECT * FROM Products WHERE product_ID = ?");
+$query = $conn->prepare("SELECT * FROM products WHERE product_id = ?");
 $query->bind_param("i", $product_id);
 $query->execute();
 $result = $query->get_result();
@@ -37,11 +37,11 @@ $result = $query->get_result();
 if ($result->num_rows > 0) {
     $product = $result->fetch_assoc();
     $category = "men";
-    $table = "Products";
+    $table = "products";
 }
 
 if (!$product) {
-    $query = $conn->prepare("SELECT * FROM Products2 WHERE product_ID = ?");
+    $query = $conn->prepare("SELECT * FROM products2 WHERE product_id = ?");
     $query->bind_param("i", $product_id);
     $query->execute();
     $result = $query->get_result();
@@ -49,7 +49,7 @@ if (!$product) {
     if ($result->num_rows > 0) {
         $product = $result->fetch_assoc();
         $category = "women";
-        $table = "Products2";
+        $table = "products2";
     }
 }
 
@@ -69,7 +69,7 @@ if ($quantity > $quantity_available) {
 
 // To update the current available quantity here
 $new_quantity = $quantity_available - $quantity;
-$update_query = $conn->prepare("UPDATE $table SET quantity_available = ? WHERE product_ID = ?");
+$update_query = $conn->prepare("UPDATE $table SET quantity_available = ? WHERE product_id = ?");
 $update_query->bind_param("ii", $new_quantity, $product_id);
 $update_query->execute();
 $update_query->close();
@@ -79,12 +79,12 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-$cart_key = $category . '_' . $product['product_ID'];
+$cart_key = $category . '_' . $product['product_id'];
 
 // To get the basis of the table here
 if (!isset($_SESSION['cart'][$cart_key])) {
     $_SESSION['cart'][$cart_key] = [
-        'product_ID' => $product['product_ID'],
+        'product_id' => $product['product_id'],
         'name' => $product['product_name'],
         'price' => $product['price'],
         'quantity' => 0,

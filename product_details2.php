@@ -18,7 +18,7 @@ $product_id = intval($_GET['id']);
 
 
 // This is to select the items from the products2(Women) to get their information
-$query = $conn->prepare("SELECT * FROM Products2 WHERE product_ID = ?");
+$query = $conn->prepare("SELECT * FROM products2 WHERE product_id = ?");
 $query->bind_param("i", $product_id);
 $query->execute();
 $result = $query->get_result();
@@ -65,7 +65,7 @@ $quantity_available = intval($product['quantity_available']);
             </div>
             <!-- This is the add to cart function where the user can add to cart and increase or decrease the quantity -->
             <form action="add_to_cart.php" method="POST">
-                <input type="hidden" name="product_id" value="<?= $product['product_ID']; ?>">
+                <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                 <div class="quantity-container">
                     <button type="button" onclick="changeQuantity(-1)">-</button>
                     <input type="number" name="quantity" id="productQuantity" value="1" min="1" max="<?= $quantity_available; ?>">

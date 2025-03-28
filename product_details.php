@@ -16,7 +16,7 @@ if (!isset($_GET['id'])) {
 
 // This is to select from the products(Men.php) for us to read the information later on
 $product_id = intval($_GET['id']);
-$query = $conn->prepare("SELECT * FROM Products WHERE product_ID = ?");
+$query = $conn->prepare("SELECT * FROM products WHERE product_id = ?");
 $query->bind_param("i", $product_id);
 $query->execute();
 $result = $query->get_result();
@@ -65,7 +65,7 @@ $quantity_available = intval($product['quantity_available']);
 
             <!-- This is the function where the user can change quantity and add the item to the cart -->
             <form action="add_to_cart.php" method="POST">
-                <input type="hidden" name="product_id" value="<?= $product['product_ID']; ?>">
+                <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
                 <div class="quantity-container">
                     <button type="button" onclick="changeQuantity(-1)">-</button>
                     <input type="number" name="quantity" id="productQuantity" value="1" min="1" max="<?= $quantity_available; ?>">

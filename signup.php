@@ -9,8 +9,6 @@
 // Session start here
 session_start();
 require 'db_connection.php';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 // This is to ensure the username and password are written properly with a predefined format
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

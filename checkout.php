@@ -48,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->begin_transaction();
     try {
         foreach ($_SESSION['checkout_items'] as $item) {
-            $stmt = $conn->prepare("INSERT INTO orders (customer_ID, customer_name, email, address, phone, latitude, longitude, distance, product_ID, product_name, quantity, price, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("issssdddissds", $customer_id, $name, $email, $address, $phone, $latitude, $longitude, $distance, $item['product_ID'], $item['name'], $item['quantity'], $item['price'], $item['category']);
+            $stmt = $conn->prepare("INSERT INTO orders (customer_id, customer_name, email, address, phone, latitude, longitude, distance, product_id, product_name, quantity, price, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("issssdddissds", $customer_id, $name, $email, $address, $phone, $latitude, $longitude, $distance, $item['product_id'], $item['name'], $item['quantity'], $item['price'], $item['category']);
 
             if (!$stmt->execute()) {
                 die("Insert Error: " . $stmt->error);
