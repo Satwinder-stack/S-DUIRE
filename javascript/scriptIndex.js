@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // For keywords used to search a specific item
     const pages = {
-        "home": "index.php",  
+        "home": "index.html",  
         "about us": "About Us.php", 
         "background": "About Us.php",
         "story": "About Us.php",

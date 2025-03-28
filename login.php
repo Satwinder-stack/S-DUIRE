@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['username'] = $user['username'];
             $_SESSION['customer_id'] = $user['customer_id'];
 
-            header("Location: index.php");
+            header("Location: index.html");
             exit();
         } else {
             echo "<script>alert('Incorrect Password!'); window.location.href='login.php';</script>";

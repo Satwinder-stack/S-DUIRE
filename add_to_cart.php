@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 
 // To check the quantity here
 if (!isset($_POST['product_id']) || !isset($_POST['quantity'])) {
-    header("Location: index.php?error=missing_data");
+    header("Location: index.html?error=missing_data");
     exit();
 }
 
@@ -25,7 +25,7 @@ $product_id = intval($_POST['product_id']);
 $quantity = intval($_POST['quantity']);
 
 if ($quantity <= 0) {
-    header("Location: index.php?error=invalid_quantity");
+    header("Location: index.html?error=invalid_quantity");
     exit();
 }
 
@@ -61,14 +61,14 @@ if (!$product) {
 $query->close();
 
 if (!$product) {
-    header("Location: index.php?error=product_not_found");
+    header("Location: index.html?error=product_not_found");
     exit();
 }
 
 // To check the quantity available
 $quantity_available = intval($product['quantity_available']);
 if ($quantity > $quantity_available) {
-    header("Location: index.php?error=not_enough_stock");
+    header("Location: index.html?error=not_enough_stock");
     exit();
 }
 
