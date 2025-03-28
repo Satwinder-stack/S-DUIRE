@@ -6,21 +6,25 @@
 // Jeerh, Satwinder 
 // Section: WD-202
 
-// Session start here
+// Display errors for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Start the session
 session_start();
 require 'db_connection.php';
 
-// This is to ensure the username and password are written properly with a predefined format
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
     $confirm_password = trim($_POST['confirm_password']);
 
+    // Input validation
     if (empty($username) || empty($password)) {
         echo "<script>alert('Username and password cannot be empty or contain only spaces!'); window.location.href='signup.php';</script>";
         exit;
     }
-// This is the predefined format
+
     if (!preg_match('/^(?=.*[A-Z])(?=.*\W)[^\s]{6,}$/', $password)) {
         echo "<script>alert('Password must be at least 6 characters long, contain at least one uppercase letter, one special character, and no white spaces.'); window.location.href='signup.php';</script>";
         exit;
@@ -31,23 +35,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // This is to read from the customers table to be referenced later on
+    // Check if username already exists
     $sql = "SELECT * FROM customers WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     if ($result->num_rows > 0) {
         echo "<script>alert('Username already exists! Choose a different username.'); window.location.href='signup.php';</script>";
         exit;
     }
 
-    // This is to set the password correct with a hash
+    // Hash the password before inserting into the database
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert new customer into the database
     $sql = "INSERT INTO customers (username, password) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $hashed_password);
 
+    // Execute the prepared statement
     if ($stmt->execute()) {
         $_SESSION['customer_id'] = $stmt->insert_id;
         $_SESSION['username'] = $username;
@@ -77,20 +85,20 @@ $conn->close();
     <link rel="stylesheet" href="css/Sign_up.css" type="text/css" />    
 </head>
 <body>
-    <!-- This is the form that contains the username and password registration -->
+    <!-- Sign-up form -->
     <div class="signup-container">
         <h1>Create Account</h1>
         <form action="signup.php" method="POST">
             <label for="username">Username</label>
             <input type="text" id="username" style="width: 95%;" name="username" required>
 
-            <!-- This is a function where when the eye is clicked, the password will show -->
+            <!-- Password field with eye toggle -->
             <label for="password">Password</label>
             <div class="password-container">
                 <input type="password" id="password" name="password" required>
                 <i class="ri-eye-off-line toggle-password" data-target="password" style="margin-top: -0.5em;"></i>
             </div>
-            <!-- This is a function where when the eye is clicked, the password will show -->
+
             <label for="confirm_password">Confirm Password</label>
             <div class="password-container">
                 <input type="password" id="confirm_password" name="confirm_password" required>
@@ -103,7 +111,7 @@ $conn->close();
     </div>
 
     <script>
-        // This is the script for the eye password 
+    // Toggle password visibility
     document.querySelectorAll(".toggle-password").forEach(item => {
         item.addEventListener("click", function() {
             let input = document.getElementById(this.getAttribute("data-target"));
@@ -116,13 +124,14 @@ $conn->close();
             }
         });
     });
-    // This is to ensure the password is correctly written
+
+    // Password validation on the client-side
     document.querySelector("form").addEventListener("submit", function(event) {
         let password = document.getElementById("password").value;
         let confirmPassword = document.getElementById("confirm_password").value;
         
         let passwordPattern = /^(?=.*[A-Z])(?=.*\W)[^\s]{6,}$/;
-        // This is to check if the password is correct or not
+
         if (!passwordPattern.test(password)) {
             alert("Password must be at least 6 characters long, contain at least one uppercase letter, one special character, and no white spaces.");
             event.preventDefault();
