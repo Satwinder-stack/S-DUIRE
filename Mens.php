@@ -11,10 +11,10 @@ session_start();
 require 'db_connection.php';
 
 // This is to set up the connection from the products table
-$result = $conn->query("SELECT * FROM Products");
+$result = $conn->query("SELECT * FROM products");
 
 
-// Logout function here
+// Logout function heres
 if (isset($_POST['logout'])) {
     session_destroy();
     header("Location: login.php"); 
